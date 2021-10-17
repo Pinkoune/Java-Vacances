@@ -1,21 +1,21 @@
 /**
- * Classe de la catégorie basse
- * @author jérémy
+ * Classe de la catï¿½gorie basse
+ * @author jï¿½rï¿½my
  *
  */
 
 public class Basse extends Instruments {
-	//Attributs privés
+	//Attributs privï¿½s
 	private int nbMicro;
 	
 	//Constructeur
-	public Basse (String uneMarque, String uneMatiere, int unNbMicro) {
-		super(uneMarque, uneMatiere);
+	public Basse (String unType, String uneMarque, String uneMatiere, int unNbMicro) {
+		super(unType, uneMarque, uneMatiere);
 		this.nbMicro = unNbMicro;
 	}
 	
-	public Basse (String uneMarque, String uneMatiere) {
-		super(uneMarque, uneMatiere);
+	public Basse (String unType, String uneMarque, String uneMatiere) {
+		super(unType, uneMarque, uneMatiere);
 	}
 	
 	//Accesseur

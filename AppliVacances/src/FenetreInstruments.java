@@ -1,6 +1,6 @@
 /**
  * Fenetre d'ajout
- * @author jérémy
+ * @author jï¿½rï¿½my
  */
 
 import java.awt.BorderLayout;
@@ -11,8 +11,8 @@ import javax.swing.*;
 import java.awt.event.ActionListener;
 public class FenetreInstruments extends JFrame implements ActionListener{
 	private JPanel monPanel;
-	private JPanel pannelHaut;
-	private JPanel pannelBas;
+	private JPanel panelHaut;
+	private JPanel panelBas;
 	private JPanel monPanelGlobal = new JPanel();
 	private JLabel lblMarque;
 	private JLabel lblMatiere;
@@ -32,14 +32,14 @@ public class FenetreInstruments extends JFrame implements ActionListener{
         
         //PANEL
         monPanel = new JPanel () ;
-        pannelHaut = new JPanel () ;
-        pannelBas = new JPanel () ;
+        panelHaut = new JPanel () ;
+        panelBas = new JPanel () ;
         monPanel.setLayout(new BorderLayout());
         monPanelGlobal.setLayout(new BorderLayout());
-        GroupLayout layout = new GroupLayout(pannelHaut);
+        GroupLayout layout = new GroupLayout(panelHaut);
         layout.setAutoCreateGaps(true);
         layout.setAutoCreateContainerGaps(true);
-        pannelHaut.setLayout(layout);
+        panelHaut.setLayout(layout);
         
         //test
         messageTest = new JLabel("test");
@@ -48,7 +48,7 @@ public class FenetreInstruments extends JFrame implements ActionListener{
         
         //LABELS
 		lblMarque = new JLabel ("Marque : ");
-		lblMatiere = new JLabel ("Matière : ");
+		lblMatiere = new JLabel ("Matiere : ");
 		lblType = new JLabel ("Type : ");
 		
 		//SAISIES DE TEXTES
@@ -60,7 +60,7 @@ public class FenetreInstruments extends JFrame implements ActionListener{
 		//BOUTONS
 		btnValider = new JButton ("Valider");
 		btnValider.addActionListener(this);
-		pannelBas.add(btnValider);
+		panelBas.add(btnValider);
 		
 		//LISTE DEROULANTE
 		liste = new JComboBox<String>();
@@ -76,39 +76,39 @@ public class FenetreInstruments extends JFrame implements ActionListener{
 		groupeCheckbox.add(electrique);
 		
 		
-        monPanel.add(pannelHaut, BorderLayout.NORTH);
-        monPanel.add(pannelBas, BorderLayout.CENTER); 
+        monPanel.add(panelHaut, BorderLayout.NORTH);
+        monPanel.add(panelBas, BorderLayout.CENTER);
 		
-      //Création de 2 groupes horizontaux 
+      //Crï¿½ation de 2 groupes horizontaux 
 		layout.setHorizontalGroup(layout.createSequentialGroup() 
 			.addGroup (layout.createParallelGroup (GroupLayout.Alignment.LEADING) //1er groupe
 				.addComponent(lblMarque)
 				.addComponent(jtfMarque)
-				.addComponent(lblMatiere)
-				.addComponent(jtfMatiere)
-				)
-			.addGroup (layout.createParallelGroup (GroupLayout.Alignment.LEADING)//2eme groupe
 				.addComponent(lblType)
 				.addComponent(liste)
+				)
+			.addGroup (layout.createParallelGroup (GroupLayout.Alignment.LEADING)//2eme groupe
+				.addComponent(lblMatiere)
+				.addComponent(jtfMatiere)
 				.addComponent(acoustique)
 				.addComponent(electrique))		
 		);
 		
 		
 		layout.setVerticalGroup(layout.createSequentialGroup()
-				.addGroup (layout.createParallelGroup (GroupLayout.Alignment.BASELINE) //Les deux premiers éléments sont sur le même alignement
+				.addGroup (layout.createParallelGroup (GroupLayout.Alignment.BASELINE) //Les deux premiers ï¿½lï¿½ments sont sur le mï¿½me alignement
 					.addComponent(lblMarque)
-					.addComponent(lblType))
+					.addComponent(lblMatiere))
 				.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 					.addGroup (layout.createSequentialGroup ()
-							.addComponent(jtfMarque) //Contenu de la première colonne
-							.addComponent(lblMatiere)
-							.addComponent(jtfMatiere)
+							.addComponent(jtfMarque) //Contenu de la premiï¿½re colonne
+							.addComponent(lblType)
+							.addComponent(liste)
 
 							)
 					.addGroup(layout.createParallelGroup(GroupLayout.Alignment.LEADING)
 						.addGroup (layout.createSequentialGroup ()
-							.addComponent(liste) //Contenu de la deuxième Colonne
+							.addComponent(jtfMatiere) //Contenu de la deuxiï¿½me Colonne
 							.addComponent(acoustique)
 							.addComponent(electrique))
 							)		
@@ -117,9 +117,7 @@ public class FenetreInstruments extends JFrame implements ActionListener{
         
         this.setAlwaysOnTop(true);
         this.getContentPane().add(monPanel);
-        this.setVisible(true);
         this.monPanelGlobal.add(monPanel, BorderLayout.CENTER);
-
         this.getContentPane().add(this.monPanelGlobal);
 	}
 	
@@ -142,19 +140,27 @@ public class FenetreInstruments extends JFrame implements ActionListener{
 	}
 	
     public void actionPerformed ( ActionEvent evenement) {
-    	if(evenement.getSource() == btnValider) {//Si la source de l'évènement est le JButton appelé 
+    	if(evenement.getSource() == btnValider) {//Si la source de l'ï¿½vï¿½nement est le JButton appelï¿½ 
     		String marque = jtfMarque.getText();	
     		String matiere = jtfMatiere.getText();
     		String type = liste.getSelectedItem().toString();
     		String mode = choixMode();
     		
     		if(type == "Guitare") {
-    			Guitare uneGuitare = new Guitare(marque, matiere);
+    			Guitare uneGuitare = new Guitare("Guitare", marque, matiere);
     			uneSonovente.ajoutInstruments(uneGuitare);
+    			JLabel guit = new JLabel("Guitare ajoutee ! ");
+        		panelBas.add(guit);
+        		panelBas.revalidate();
+        		panelBas.repaint();
     		}
     		else {
-    			Basse uneBasse = new Basse(marque, matiere);
+    			Basse uneBasse = new Basse("Basse", marque, matiere);
     			uneSonovente.ajoutInstruments(uneBasse);
+    			JLabel bass = new JLabel("Basse ajoutee ! ");
+    			panelBas.add(bass);
+    			panelBas.revalidate();
+    			panelBas.repaint();
     		}
 
     	}

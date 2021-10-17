@@ -51,11 +51,12 @@ public class FenetreAffichage extends JFrame implements ActionListener {
         Object data[][]= new Object[10][10]; 
         int i = 0; 
 		for (Instruments unInstrument : uneSonovente.getListeInstruments()) {
-			data[i][0] = i + " - " + unInstrument.getMarque();
-			data[i][1] = unInstrument.getMatiere();
+			data[i][0] = unInstrument.getType();
+			data[i][1] = unInstrument.getMarque();
+			data[i][2] = unInstrument.getMatiere();
 			i++;
 		}
-        String [] title = {"Marque", "Mati�re"};                         
+        String [] title = {"Type", "Marque", "Matiere",};                         
         this.tableau = new JTable(data,title);                
         this.tableau.setPreferredScrollableViewportSize(new Dimension(350, 300)); 
 
@@ -68,12 +69,9 @@ public class FenetreAffichage extends JFrame implements ActionListener {
         monPanel.add(panelHaut, BorderLayout.NORTH);
         monPanel.add(panelMil, BorderLayout.CENTER);
         
-        
-        
         this.setAlwaysOnTop(true);
         this.monPanelGlobal.add(this.scrollPane);
         this.getContentPane().add(monPanel); // UN SEUL panel DANS LE GET CONTENT
-        this.setVisible(true);
 	}
 		
 	//les getter et setter

@@ -25,11 +25,19 @@ public class Accueil extends JFrame implements ActionListener {
   private JPanel monPanelGlobal = new JPanel();
 
   //Les boutons
-  private JButton ajouterPdt;
-  private JButton supprimerPdt;
-  private JButton afficherPdt;
-  private JButton rechercherPdt;
+  private JMenuItem ajouterPdt;
+  private JMenuItem supprimerPdt;
+  private JMenuItem afficherPdt;
+  private JMenuItem rechercherPdt;
   
+  //Les Menus
+  private JMenuBar menu;
+  private JMenu menuPdt;
+  private JMenu menuPdtAjout;
+  private JMenu menuPdtRech;
+  private JMenu menuPdtSupp;
+  
+  private JLabel lblMessage;
   private Sonovente uneSonovente;
 
 
@@ -44,13 +52,13 @@ public class Accueil extends JFrame implements ActionListener {
     this.setTitle("Sonovente");
     this.setLocationRelativeTo(null);
     this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setSize(700, 500);
+    this.setSize(900, 700);
     this.setResizable(false);
 
     //INSTANCIATION DU PANEL GLOBAL
 
     this.monPanel.setLayout(new FlowLayout(1, 4, 2));
-    this.monPanel.setOpaque(false);
+    this.monPanel.setBackground(Color.pink);
     
     this.setContentPane(new AfficheImage("/Users/jeremy/Desktop/fondbois.jpg"));
     this.getContentPane().setLayout(new BorderLayout());
@@ -59,30 +67,55 @@ public class Accueil extends JFrame implements ActionListener {
     monPanelGlobal.setLayout(new BorderLayout());
     
 
-    // Cr�ation d'element de menu
-    this.ajouterPdt = new JButton("Ajouter un instrument");
-    this.afficherPdt = new JButton("Afficher les instruments");
-    this.rechercherPdt = new JButton("Rechercher un instrument");
-    this.supprimerPdt = new JButton("Supprimer un instrument");
+ // Création de la barre de menu
+    JMenuBar menu = new JMenuBar();
     
-    //Taille des boutons
-    this.ajouterPdt.setPreferredSize(new Dimension(200, 80));
-    this.afficherPdt.setPreferredSize(new Dimension(200, 80));
-    this.rechercherPdt.setPreferredSize(new Dimension(200, 80));
-    this.supprimerPdt.setPreferredSize(new Dimension(200, 80));
+ // Création d'un "bouton menu" Produit dans la barre de menu
+    JMenu menuPdt = new JMenu();
+    JMenu menuPdtAjout = new JMenu();
+    JMenu menuPdtRech = new JMenu();
+    JMenu menuPdtSupp = new JMenu();
+    
+    // Création d'element de menu
+    this.ajouterPdt = new JMenuItem("Ajouter un instrument");
+    this.afficherPdt = new JMenuItem("Afficher les instruments");
+    this.rechercherPdt = new JMenuItem("Rechercher un instrument");
+    this.supprimerPdt = new JMenuItem("Supprimer un instrument");
+    
+    
+    // Création d'élément de menu
+    this.menuPdt = new JMenu("");
+    this.menuPdtAjout = new JMenu("");
+    this.menuPdtRech = new JMenu("");
+    this.menuPdtSupp = new JMenu("");
 
-
-    // Ajout de l'element au menu 
-    monPanel.add(ajouterPdt);
-    monPanel.add(afficherPdt);
-    monPanel.add(rechercherPdt);
-    monPanel.add(supprimerPdt);
+    // Ajout du menu dans la barre de menu
+    menu.add(menuPdt);
+    menu.add(menuPdtAjout);
+    menu.add(menuPdtRech);
+    menu.add(menuPdtSupp);
+    
+    // Ajout de l'élément au menu 
+    menu.add(ajouterPdt);
+    menu.add(afficherPdt);
+    menu.add(rechercherPdt);
+    menu.add(supprimerPdt);
 
     //on ecoute les items du menu
     this.ajouterPdt.addActionListener(this);
     this.afficherPdt.addActionListener(this);
     this.rechercherPdt.addActionListener(this);
     this.supprimerPdt.addActionListener(this);
+
+
+    // Permet de définir le menu utilisé dans la JFrame
+    this.setJMenuBar(menu);
+
+    //LABEL PERMETTANT D'AFFICHER UN TEXTE
+    this.lblMessage = new JLabel();
+    this.lblMessage.setText("Magasin SONOVENTE");
+
+    this.monPanel.add(lblMessage);
 
     this.monPanelGlobal.add(monPanel, BorderLayout.CENTER);
 
@@ -101,27 +134,27 @@ public class Accueil extends JFrame implements ActionListener {
   //va  lancer le changement de panel celon le clic
   public void actionPerformed(ActionEvent e) {
 
-    if (e.getSource().equals(ajouterPdt)) {							//Panel d'Ajout d'�l�ve si bouton cliqu�.
+    if (e.getSource().equals(ajouterPdt)) {							//Panel d'Ajout si bouton cliqué.
     	this.getContentPane().removeAll();  			      			 //on va supprimer le panel
     	this.getContentPane().add(new FenetreInstruments(uneSonovente).getMonPanelGlobal());       //on va ajouter un panel
     	this.getContentPane().revalidate();								//
     	this.getContentPane().repaint();
     	
-    } else if (e.getSource().equals(afficherPdt)) {					//Panel d'Affichage de la classe si bouton cliqu�.
+    } else if (e.getSource().equals(afficherPdt)) {					//Panel d'Affichage si bouton cliqué.
       
     	this.getContentPane().removeAll();      					     //on va supprimer le panel
 		this.getContentPane().add(new FenetreAffichage(uneSonovente).getMonPanelGlobal());       //on va ajouter un panel
 		this.getContentPane().revalidate();
 		this.getContentPane().repaint();
 		
-    } else if (e.getSource().equals(rechercherPdt)) {					//Panel de suppression de la classe si bouton cliqu�.
+    } else if (e.getSource().equals(rechercherPdt)) {					//Panel de suppression si bouton cliqué.
         
     	this.getContentPane().removeAll();      					     //on va supprimer le panel
 		this.getContentPane().add(new FenetreRecherche(uneSonovente).getMonPanelGlobal());       //on va ajouter un panel
 		this.getContentPane().revalidate();
 		this.getContentPane().repaint();
 		
-    } else if (e.getSource().equals(supprimerPdt)) {				//Panel de suppression d'�l�ve si bouton cliqu�.
+    } else if (e.getSource().equals(supprimerPdt)) {				//Panel de suppression si bouton cliqué.
     	
       this.getContentPane().removeAll();       							//on va supprimer le panel
       this.getContentPane().add(new FenetreSuppression(uneSonovente).getMonPanelGlobal());       //on va ajouter un panel
