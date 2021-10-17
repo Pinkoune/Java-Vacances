@@ -1,6 +1,6 @@
 /**
  * Classe qui contient la liste
- * @author jérémy
+ * @author jï¿½rï¿½my
  *
  */
 
@@ -26,12 +26,12 @@ public class Sonovente {
 	
 	public String recherche(String uneMatiere) {
 		int index = 0;
-		String result = "\nCet instrument n'est pas présent";
+		String result = "\nCet instrument n'est pas present";
 		while(index < this.listeInstruments.size() && !this.listeInstruments.get(index).getMatiere().equals(uneMatiere)) {
 			index = index + 1;
 		}
 		if (index < this.listeInstruments.size()) {
-			result = "\nVoici l'instrument recherché :" + uneMatiere  + this.listeInstruments.get(index).toString();
+			result = "\nVoici l'instrument recherche :" + uneMatiere  + this.listeInstruments.get(index).toString();
 		}
 		return result;
 	}

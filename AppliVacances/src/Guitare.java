@@ -1,21 +1,21 @@
 /**
- * Classe de la catégorie guitare
- * @author jérémy
+ * Classe de la catï¿½gorie guitare
+ * @author jï¿½rï¿½my
  *
  */
 
 public class Guitare extends Instruments {
-	//Attributs privés
+	//Attributs privï¿½s
 	private int nbCordes;
 	
 	//Constructeur
-	public Guitare (String uneMarque, String uneMatiere, int unNbCordes) {
-		super(uneMarque, uneMatiere);
+	public Guitare (String unType, String uneMarque, String uneMatiere, int unNbCordes) {
+		super(unType, uneMarque, uneMatiere);
 		this.nbCordes = unNbCordes;
 	}
 	
-	public Guitare (String uneMarque, String uneMatiere) {
-		super(uneMarque, uneMatiere);
+	public Guitare (String unType, String uneMarque, String uneMatiere) {
+		super(unType, uneMarque, uneMatiere);
 	}
 	
 	//Accesseur

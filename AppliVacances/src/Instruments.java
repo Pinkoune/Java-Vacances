@@ -1,24 +1,26 @@
 /**
  * Classe Abstraite des instruments
- * @author jérémy
+ * @author jï¿½rï¿½my
  *
  */
 
 public abstract class Instruments {
-	//attributs privés
+	//attributs privï¿½s
 	private String marque;
 	private String matiere;
+	private String type;
 
 	
 	//Constructeur
-	public Instruments(String uneMarque, String unMatiere) {
+	public Instruments(String unType, String uneMarque, String unMatiere) {
+		this.type = unType;
 		this.marque = uneMarque;
 		this.matiere = unMatiere;
 	}
 	
 	//Accesseurs
 	public String getMarque() {
-		return marque;
+		return this.marque;
 	}
 
 	public void setMarque(String marque) {
@@ -32,5 +34,9 @@ public abstract class Instruments {
 	public void setModele(String matiere) {
 		this.matiere = matiere;
 	}	
+	
+	public String getType() {
+		return this.type;
+	}
 	
 }
