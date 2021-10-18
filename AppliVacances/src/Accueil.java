@@ -1,6 +1,6 @@
 /**
  * Page principale du programme
- * @author j�r�my
+ * @author Jeremy
  */
 
 import java.awt.BorderLayout;
@@ -30,12 +30,8 @@ public class Accueil extends JFrame implements ActionListener {
   private JMenuItem afficherPdt;
   private JMenuItem rechercherPdt;
   
-  //Les Menus
+  //La barre menu
   private JMenuBar menu;
-  private JMenu menuPdt;
-  private JMenu menuPdtAjout;
-  private JMenu menuPdtRech;
-  private JMenu menuPdtSupp;
   
   private JLabel lblMessage;
   private Sonovente uneSonovente;
@@ -67,35 +63,16 @@ public class Accueil extends JFrame implements ActionListener {
     monPanelGlobal.setLayout(new BorderLayout());
     
 
- // Création de la barre de menu
+ // Creation de la barre de menu
     JMenuBar menu = new JMenuBar();
     
- // Création d'un "bouton menu" Produit dans la barre de menu
-    JMenu menuPdt = new JMenu();
-    JMenu menuPdtAjout = new JMenu();
-    JMenu menuPdtRech = new JMenu();
-    JMenu menuPdtSupp = new JMenu();
-    
-    // Création d'element de menu
+    // Creation d'element de menu
     this.ajouterPdt = new JMenuItem("Ajouter un instrument");
     this.afficherPdt = new JMenuItem("Afficher les instruments");
     this.rechercherPdt = new JMenuItem("Rechercher un instrument");
     this.supprimerPdt = new JMenuItem("Supprimer un instrument");
     
-    
-    // Création d'élément de menu
-    this.menuPdt = new JMenu("");
-    this.menuPdtAjout = new JMenu("");
-    this.menuPdtRech = new JMenu("");
-    this.menuPdtSupp = new JMenu("");
-
-    // Ajout du menu dans la barre de menu
-    menu.add(menuPdt);
-    menu.add(menuPdtAjout);
-    menu.add(menuPdtRech);
-    menu.add(menuPdtSupp);
-    
-    // Ajout de l'élément au menu 
+    // Ajout de l'element au menu 
     menu.add(ajouterPdt);
     menu.add(afficherPdt);
     menu.add(rechercherPdt);
@@ -108,7 +85,7 @@ public class Accueil extends JFrame implements ActionListener {
     this.supprimerPdt.addActionListener(this);
 
 
-    // Permet de définir le menu utilisé dans la JFrame
+    // Permet de definir le menu utilise dans la JFrame
     this.setJMenuBar(menu);
 
     //LABEL PERMETTANT D'AFFICHER UN TEXTE
